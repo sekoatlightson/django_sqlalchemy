@@ -63,9 +63,9 @@ def index(request):
 
 
 def search(request):
-    # parameters = request.GET
-    # parameters = { 'rental_rate': request.GET.get('rental_rate'), 'length': request.GET.get('length')}
-    # print(parameters)
+    parameters = request.GET
+    parameters = { 'rental_rate': request.GET.get('rental_rate'), 'length': request.GET.get('length')}
+    print(parameters)
     engine = create_engine('sqlite:///'+ os.path.join(basepath,'sqlite-sakila.sq'))
     #query = 'select title, rental_rate , length from film'
     template = """
@@ -76,10 +76,10 @@ def search(request):
     AND length < {{ length }}
     {% endif %}
     """
-    parameters = {
-        "rental_rate" : 3.0,
-        "length" : 100
-    }
+    # parameters = {
+    #     "rental_rate" : 3.0,
+    #     "length" : 100
+    # }
 
     query = apply_sql_template(template, parameters)
     print(query)
