@@ -1,5 +1,24 @@
 {% extends 'rental/base.html' %}
 
 {% block content %}
-<h1>レンタルビデオのアプリケーション</h1>
+<h1>結果一覧</h1>
+<table class="table">
+  <thead>
+    <tr>
+        {% for col in columns %}
+        <th>{{ col }}</th>
+        {% endfor %}
+    </tr>
+  </thead>
+ 
+  <tbody>
+    {% for row in rows %}
+    <tr>
+        <th>{{ row.title }}</th>
+        <th>{{ row.rental_rate }}</th>
+        <th>{{ row.length }}</th>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% endblock %}
