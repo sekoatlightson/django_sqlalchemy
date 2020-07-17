@@ -3,6 +3,7 @@ from sqlalchemy import create_engine
 import os
 from copy import deepcopy
 from jinjasql import JinjaSql
+#from six import string_types
 
 basepath = os.path.dirname(os.path.abspath(__file__))
 
@@ -71,7 +72,10 @@ def search(request):
     template = """
     SELECT title, rental_rate, length
     FROM film
-    WHERE rental_rate  < {{ rental_rate }}
+    WHERE title <> ''
+    {% if rettal_rate %} 
+    AND rental_rate  < {{ rental_rate }}
+    {% endif %}   
     {% if length %}
     AND length < {{ length }}
     {% endif %}
